@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>VisualHotKey</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64;arm64;x86</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ClearScript.V8" Version="7.3.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IO\Keyboard\" />
+    <Folder Include="IO\Monitor\" />
+    <Folder Include="IO\Mouse\" />
+    <Folder Include="IO\Sound\" />
+    <Folder Include="Models\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Common\" />
+    <Folder Include="File\" />
+    <Folder Include="GUI\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Environment\" />
+    <Folder Include="Reg\" />
+    <Folder Include="Help\" />
+  </ItemGroup>
+
+</Project>

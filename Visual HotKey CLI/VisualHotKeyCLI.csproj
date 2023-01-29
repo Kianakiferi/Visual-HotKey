@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>VisualHotKey.CLI</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Platforms>AnyCPU;x64;x86;arm64</Platforms>
+        <PublicFolder>Public\**</PublicFolder>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.ClearScript.V8" Version="7.3.7" />
+    </ItemGroup>
+    <Choose>
+        <When Condition="$(RuntimeIdentifier) != ''">
+            <ItemGroup>
+                <PackageReference Condition="$(RuntimeIdentifier.StartsWith('win-x64'))" Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.3.7" />
+                <PackageReference Condition="$(RuntimeIdentifier.StartsWith('win-x86'))" Include="Microsoft.ClearScript.V8.Native.win-x86" Version="7.3.7" />
+                <PackageReference Condition="$(RuntimeIdentifier.StartsWith('win-arm64'))" Include="Microsoft.ClearScript.V8.Native.win-arm64" Version="7.3.7" />
+
+                <PackageReference Condition="$(RuntimeIdentifier.StartsWith('linux-x64'))" Include="Microsoft.ClearScript.V8.Native.linux-x64" Version="7.3.7" />
+                <PackageReference Condition="$(RuntimeIdentifier.StartsWith('linux-arm64'))" Include="Microsoft.ClearScript.V8.Native.linux-arm64" Version="7.3.7" />
+                <PackageReference Condition="$(RuntimeIdentifier.StartsWith('linux-arm'))" Include="Microsoft.ClearScript.V8.Native.linux-arm" Version="7.3.7" />
+
+                <PackageReference Condition="$(RuntimeIdentifier.StartsWith('osx-x64'))" Include="Microsoft.ClearScript.V8.Native.osx-x64" Version="7.3.7" />
+                <PackageReference Condition="$(RuntimeIdentifier.StartsWith('osx-arm64'))" Include="Microsoft.ClearScript.V8.Native.osx-arm64" Version="7.3.7" />
+            </ItemGroup>
+        </When>
+        <Otherwise>
+            <ItemGroup Condition="$([MSBuild]::IsOsPlatform('Windows'))">
+                <PackageReference Condition="'$(PlatformTarget)' == 'x64'" Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.3.7" />
+                <PackageReference Condition="'$(PlatformTarget)' == 'x86'" Include="Microsoft.ClearScript.V8.Native.win-x86" Version="7.3.7" />
+                <PackageReference Condition="'$(PlatformTarget)' == 'arm64'" Include="Microsoft.ClearScript.V8.Native.win-arm64" Version="7.3.7" />
+            </ItemGroup>
+            <ItemGroup Condition="$([MSBuild]::IsOsPlatform('Linux'))">
+                <PackageReference Condition="'$(PlatformTarget)' == 'x64'" Include="Microsoft.ClearScript.V8.Native.linux-x64" Version="7.3.7" />
+                <PackageReference Condition="'$(PlatformTarget)' == 'x86'" Include="Microsoft.ClearScript.V8.Native.linux-arm64" Version="7.3.7" />
+                <PackageReference Condition="'$(PlatformTarget)' == 'arm64'" Include="Microsoft.ClearScript.V8.Native.linux-arm" Version="7.3.7" />
+
+            </ItemGroup>
+            <ItemGroup Condition="$([MSBuild]::IsOsPlatform('OSX'))">
+                <PackageReference Condition="'$(PlatformTarget)' == 'x64'" Include="Microsoft.ClearScript.V8.Native.osx-x64" Version="7.3.7" />
+                <PackageReference Condition="'$(PlatformTarget)' == 'arm64'" Include="Microsoft.ClearScript.V8.Native.osx-arm64" Version="7.3.7" />
+            </ItemGroup>
+
+
+        </Otherwise>
+    </Choose>
+
+    <ItemGroup>
+        <None Update="Public\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <!--
+    <ItemGroup>
+        <ContentWithTargetPath Include="Lib\*.dll=">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>%(Filename)%(Extension)</TargetPath>
+        </ContentWithTargetPath >
+    </ItemGroup>
+    --> 
+
+    <ItemGroup>
+        <EditorConfigFiles Remove="C:\Surface\Programs\Source\Visual HotKey\Visual HotKey CLI\.editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PublicFolder Remove="Public\Scripts\Test.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="C:\Surface\Programs\Source\Visual HotKey\Visual HotKey CLI\.editorconfig" />
+    </ItemGroup>
+
+</Project>

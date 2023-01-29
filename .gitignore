@@ -1,0 +1,11 @@
+﻿
+.vs/
+
+*.nupkg
+*.nuget.props
+*.nuget.targets
+
+**/[Pp]ackages/*
+
+*.[Cc]ache
+!?*.[Cc]ache/
