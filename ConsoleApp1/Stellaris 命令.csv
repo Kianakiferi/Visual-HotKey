@@ -1,0 +1,3 @@
+描述,命令,动作
+移除遗珍冷却,effect = { remove_modifier = relic_activation_cooldown },Run
+瞬间星球改造,finish_terraform,Run
